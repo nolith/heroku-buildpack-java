@@ -16,10 +16,4 @@ export_env $ENV_DIR "." "JAVA_OPTS|JAVA_TOOL_OPTIONS"
 
 cd $BUILD_DIR
 
-mvn_settings_opt="$(_mvn_settings_opt ${BUILD_DIR} ${BUILD_DIR})"
-
-if has_maven_wrapper $BUILD_DIR; then
-  ./mvnw -B ${mvn_settings_opt} test
-else
-  mvn -B ${mvn_settings_opt} test
-fi
+run_mvn "test" $BUILD_DIR $BUILD_DIR
